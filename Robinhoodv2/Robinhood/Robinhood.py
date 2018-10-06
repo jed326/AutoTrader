@@ -104,14 +104,19 @@ class Robinhood:
         self.password = password
         payload = {
             'password': self.password,
-            'username': self.username
+            'username': self.username,
+            'grant_type':'password',
+            'client_id':'c82SH0WZOsabOXGP2sxqcj34FxkvfnWRZBKlBjFS'
         }
 
         if mfa_code:
             payload['mfa_code'] = mfa_code
 
+        #print(payload)
+
         try:
-            res = self.session.post(endpoints.login(), data=payload, timeout=15)
+            # res = self.session.post(endpoints.login(), data=payload, timeout=15)
+            res = requests.post(endpoints.login(), data=payload)
             res.raise_for_status()
             data = res.json()
         except requests.exceptions.HTTPError:
@@ -122,7 +127,7 @@ class Robinhood:
 
         if 'token' in data.keys():
             self.auth_token = data['token']
-            self.headers['Authorization'] = 'Token ' + self.auth_token
+            self.headers['Authorization'] = 'Bearer' + self.auth_token
             return True
 
         return False
