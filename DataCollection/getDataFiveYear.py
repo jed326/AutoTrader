@@ -7,6 +7,6 @@ for stock in stocks:
         res = requests.get(url = URL)
         data = res.json()
         writer = csv.writer(c, delimiter=',')
-        writer.writerow(["symbol", "begins_at", "close_price", "high_price", "interpolated", "low_price", "open_price", "session", "volume"])
+        writer.writerow(["symbol", "begins_at", "close_price", "high_price", "low_price", "open_price", "volume"])
         for d in data:
-            writer.writerow([stock, d["date"], d["close"], d["high"], "False", d["low"], d["open"], "reg", d["volume"]])
+            writer.writerow([stock, d["date"], d["close"], d["high"], d["low"], d["open"], d["volume"]])
