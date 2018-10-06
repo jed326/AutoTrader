@@ -6,5 +6,4 @@
 ## Robinhood Submodule Notes:
 * Tto get historical data the bounds needs to be manually set.
 * The span is limited to 1 year.
-* Robinhood needs to be reinstalled after updates.
-...`pip install .`
+* Robinhood needs to be reinstalled after updates: `pip install .`
