@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>AutoTrader - Portfolio</title>
+        <link rel= "stylesheet" href= "{{ url_for('static', filename='styles/graphs.css') }}">
+        <link rel= "stylesheet" href= "{{ url_for('static', filename='styles/jeff.css') }}">
+    </head>
+    <body>
+        <div class = 'headerbackground'>
+            <h1 class = "Webpagename"><a href="/home">FUNDING SECURED</a></h1>
+            <div class = "tabs">
+              <ul>
+                <li class = "li-1"><a href="/stocks">Pick Your Stocks</a></li>
+                <li class = "li-2"><a href="/portfolio">Your Portfolio</a></li>
+                <li class = "li-2"><a href="/stats">Stats</a></li>
+              </ul>
+            </div>
+        </div>
+        <div class='graphs-flex-main'>
+            <p class='graphs-flex-headers'>AMGN</p>
+            <div class='graphs-flex-horizontal'>
+                <img class='graph' src="../static/img/AMGN_Average.PNG">
+                <img class='graph' src="../static/img/AMGN_Predict.PNG">
+            </div>
+            <p class='graphs-flex-headers'></p>
+            <p class='graphs-flex-headers'>BBBY</p>
+            <div class='graphs-flex-horizontal'>
+                <img class='graph' src="../static/img/BBBY_Average.PNG">
+                <img class='graph' src="../static/img/BBBY_Predict.PNG">
+            </div>
+            <p class='graphs-flex-headers'></p>
+            <p class='graphs-flex-headers'>TSLA</p>
+            <div class='graphs-flex-horizontal'>
+                <img class='graph' src="../static/img/TSLA_Average.PNG">
+                <img class='graph' src="../static/img/TSLA_Predict.PNG">
+            </div>
+        </div>
+    </body>
+</html>

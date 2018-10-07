@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <title>Choose Your Stocks</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel= "stylesheet" href= "{{ url_for('static', filename='styles/jeff.css') }}">
+    <link rel= "stylesheet" href= "{{ url_for('static', filename='styles/home.css') }}">
+  </head>
+  <body>
+    <div class = 'headerbackground'>
+      <h1 class = "Webpagename"><a class="Webpagename" href="/home">FUNDING SECURED</a></h1>
+      <!-- <h1 class = "Webpagename"><a href="/home">Choose Stocks</a></h1> -->
+
+      <div class = "tabs">
+      <ul>
+        <li class = "li-1"><a href="/stocks">Pick Your Stocks</a></li>
+        <li class = "li-2"><a href="/portfolio">Your Portfolio</a></li>
+        <li class = "li-2"><a href="/stats">Stats</a></li>
+      </ul>
+
+    </div>
+    </div>
+
+
+
+    <div class = "bodyofpage flex-home-1">
+      <h1 class="home-header-1">Our Project</h1>
+        <p align="center" class="home-paragraph-1">Buy-and-Hold: The baseline model we are using to compare our two different models is a simple buy-and-hold method.  We purchase a set number of stocks, in our case, 1000 stocks at the beginning of our data history and sell the stock on the current date.  We plot the profit over time as we hold the stock. <br>
+          <br>
+          <br>
+          Golden Crosses: Also known as two moving averages, uses the 50- and 200-day moving averages to calculate when to buy and sell stocks.  A golden cross is when the 50-day moving average rises above the 200-day moving average denoting the purchase of stocks.  A death cross denotes the opposite: when the 50-day moving average dips below the 200-day moving average denoting the selling of stocks.  We buy 1000 stocks when we meet a golden cross and sell all 1000 stocks when we meet a death cross. In general buying around golden crosses and death crosses gives a similar result to the Buy and Hold method.<br>
+          <br>
+          <br>
+          Noah: Based off of Facebook’s Prophet forecasting tool, Noah is an additive non-linear regression model utilizing changepoint analysis. It looks at the greatest change in a rate of time and uses that changepoint to avoid fitting around white noise. Add in the capability to detect seasonal, even daily trends, and we get a robust, flexible model for even the most complicated of market fluctuations. In general Noah will perform on par with the other models on a positive trending stock, but perform significantly better when a large drop in stock price occurs. <br>
+        </p>
+    </div>
+  </body>
+</html>

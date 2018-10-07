@@ -1,0 +1,19 @@
+body {
+    background-color: #1e1e1e;
+    font-family: Segoe UI,Frutiger,Frutiger Linotype,Dejavu Sans,Helvetica Neue,Arial,sans-serif;
+}
+
+
+.home-header-1 {
+    height: 50px;
+    text-align: center;
+    padding: 25px;
+    font-size: 24px;
+}
+
+.home-paragraph-1 {
+    width: 80%;
+    text-align: left;
+    margin: auto;
+    font-size: 18px;
+}
