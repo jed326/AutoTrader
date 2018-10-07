@@ -7,14 +7,13 @@ import os, csv
 def query(stock):
     client = bigquery.Client('autotrader-test-1')
 
-    QUERY = ('SELECT begins_at FROM `autotrader-test-1.HistoricalPrices.%s` ' % stock
-             'LIMIT 1000')
+    QUERY = ('SELECT symbol FROM `autotrader-test-1.HistoricalPrices.%s` LIMIT 1000' % stock)
 
     query_job = client.query(QUERY)
     rows = query_job.result()
 
     for row in rows:
-        print(row.begins_at)
+        print(row.symbol)
 
 def insertCSV(stock):
 
@@ -44,4 +43,5 @@ def insertCSV(stock):
             readable, table_ref, job_config=load_config)
 
 if __name__ == "__main__":
-    insertCSV("GOOG")
+    #insertCSV("GOOG")
+    query("TWTR")
