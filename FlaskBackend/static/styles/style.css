@@ -1,0 +1,51 @@
+body {
+    background-color: #1e1e1e;
+    font-family: Segoe UI,Frutiger,Frutiger Linotype,Dejavu Sans,Helvetica Neue,Arial,sans-serif;
+}
+
+.login-title {
+    color: white;
+    text-align: center;
+}
+
+.login-flex-1 {
+    display: flex; /* or inline-flex */
+    height: 50%;
+    margin: auto;
+    flex-flow: column nowrap;
+    justify-content: center
+}
+
+.login-flex-2 {
+    display: flex; /* or inline-flex */
+    height: 50%;
+    margin: auto;
+    flex-flow: column nowrap;
+    justify-content: center
+}
+
+.login-field {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    height: 25px;
+}
+
+.login-submit-button {
+    height: 25px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.login-submit-button:hover {
+    background-color: #45a049;
+}
+
+.login-flex-element {
+    flex: 0 1 auto;
+    margin: auto;
+    width: 250px;
+    text-align: center;
+}
