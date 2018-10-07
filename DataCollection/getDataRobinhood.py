@@ -8,7 +8,7 @@ my_trader.print_quote("AAPL")
 
 my_trader.print_quotes(stocks=["FB", "MSFT"])
 
-q = my_trader.get_historical_quotes(stock = "GOOG", interval = "day", span = "year", bounds = "regular")
+q = my_trader.get_historical_quotes(stock = "BTC", interval = "day", span = "year", bounds = "regular")
 print(q)
 
 quote_info = my_trader.quote_data("GEVO")

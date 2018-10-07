@@ -72,11 +72,11 @@ if __name__ == "__main__":
     # rows = query("TWTR")
     # for r in rows:
     #     print(r)
-    insertCSV("AAPL")
+    insertCSV("NKE")
 
-    stocks = getAllStocks()
-    for s in stocks:
-        print(s)
+    # stocks = getAllStocks()
+    # for s in stocks:
+    #     print(s)
 
 '''
 if __name__ == "__main__":
