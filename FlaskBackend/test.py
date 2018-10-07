@@ -1,5 +1,8 @@
 from flask import Flask, render_template, redirect, url_for, request
 from Robinhood import Robinhood
+import sys
+sys.path.append("../")
+from DataCollection import database
 
 app = Flask(__name__)
 
@@ -20,8 +23,9 @@ def login():
 
 @app.route('/yeet')
 def yeet():
-    my_trader.logout
-    return render_template('yeet.html')
+    stocks = database.getAllStocks()
+    print(stocks)
+    return render_template('stockchooser.html', stocks = stocks)
 
 
 def test1(u, p):
