@@ -6,6 +6,24 @@ import os, csv, requests, datetime
 
 project_id = 'autotrader-test-1'
 dataset_id = 'PriceData'
+userdata_id = 'UserData'
+userdata_table = 'Data'
+
+def addUserData(data):
+    client = bigquery.Client(project_id)
+    table_id = userdata_table  # replace with your table ID
+    table_ref = client.dataset(userdata_id).table(table_id)
+    table = client.get_table(table_ref)  # API request
+
+    errors = client.insert_rows(table, data)
+
+    assert errors == []
+
+def updateQuantity(User, Stock):
+    pass
+
+def updateMoney(User, Stock):
+    pass 
 
 def query(stock):
     client = bigquery.Client(project_id)
@@ -91,4 +109,5 @@ if __name__ == "__main__":
     # stocks = getAllStocks()
     # for s in stocks:
     #     print(s)
-    print(getPrices('2018-10-05'))
+    # print(getPrices('2018-10-05'))
+    addUserData([(u'jayd0104@gmail.com', u'AAPL', 3, 420.69)])
