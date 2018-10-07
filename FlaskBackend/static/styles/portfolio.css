@@ -1,0 +1,35 @@
+body {
+    background-color: #1e1e1e;
+    font-family: Segoe UI,Frutiger,Frutiger Linotype,Dejavu Sans,Helvetica Neue,Arial,sans-serif;
+}
+
+table {
+    color: white;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    font-size: 24pt;
+    text-align: center;
+    vertical-align: middle;
+}
+
+tr {
+    height: 75px;
+}
+
+.head{
+    background-color: navy;
+}
+
+tr:nth-child(even) {
+    background-color: navy;
+}
+
+tr:nth-child(odd) {
+    background-color: blue;
+}
+
+table {
+    width: 80%;
+}
