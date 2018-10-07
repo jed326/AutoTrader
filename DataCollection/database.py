@@ -42,8 +42,16 @@ def insertCSV(stock):
         client.load_table_from_file(
             readable, table_ref, job_config=load_config)
 
-def insertRow(stock):
-    pass
+def insertRow(stock, data):
+    client = bigquery.Client(project_id)
+    table_id = stock  # replace with your table ID
+    table_ref = client.dataset(dataset_id).table(table_id)
+    table = client.get_table(table_ref)  # API request
+
+    errors = client.insert_rows(table, data)
+
+    assert errors == []
+
 
 def getAllStocks():
     client = bigquery.Client(project_id)

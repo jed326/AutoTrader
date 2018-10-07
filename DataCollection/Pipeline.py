@@ -3,7 +3,7 @@ stocks = ['TWTR', 'YAHOY', 'YIPI', 'YOOIF', 'MOMO', 'GDDY', 'BBBY', 'INTC', 'PCA
 
 for stock in stocks:
     try:
-        getDataFiveYear.getData(stock)
+        getData.getData(stock)
         database.insertCSV(stock)
     except:
         print("unlucky")
