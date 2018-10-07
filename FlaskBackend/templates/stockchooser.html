@@ -3,6 +3,10 @@
     <title>Choose Your Stocks</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel= "stylesheet" href= "{{ url_for('static', filename='styles/jeff.css') }}">
+    <script
+			  src="https://code.jquery.com/jquery-3.3.1.js"
+			  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+			  crossorigin="anonymous"></script>
   </head>
   <body>
     <div class = 'headerbackground'>
@@ -19,15 +23,50 @@
     </div>
 
 
-
+    <h2 id = "TotalCost">Total Cost is $0</h2>
     <div class = "bodyofpage">
-      <h1>TEST</h1>
-      {% for stock in stocks %}
+      <form>
+    <table align="center">
+      <tr>
+        <th>Stock Name</th>
+        <th>Price</th>
+        <th># Of Stocks</th>
+      </tr>
+        {% for key, value in stocks.items() %}
+          <tr>
+            <td>{{key}}</td>
+            <td id = "value{{loop.index}}">{{value}}</td>
+            <td><input type="number" name="Number" value = 0 min = 0 oninput="validity.valid||(value='');" id = "input{{loop.index}}"></td>
+          </tr>
+        {% endfor %}
+    </table>
 
-            {{stock}}
+  </form>
 
-      {% endfor %}
+
+       <button type="button" id = "buy">Buy Stock!</button>
+      <h2 id = "TotalCost1">Total Cost is $0</h2>
 
     </div>
   </body>
 </html>
+
+<script>
+  $("input").change(function(){
+    var i;
+    var sum = 0;
+    var price = 0;
+    var inputname, value;
+    for (i = 1; i < 29; i++) {
+      inputname = "#input" + i.toString();
+      value = "#value" + i.toString();
+      price = parseFloat($(value).text());
+      sum += parseInt($(inputname).val()) * price;
+    }
+  console.log(sum);
+  sum = Number((sum).toFixed(2))
+  var final_string = "Total Cost is $" + sum.toString();
+  $('#TotalCost').text(final_string);
+  $('#TotalCost1').text(final_string);
+});
+</script>

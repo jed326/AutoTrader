@@ -58,7 +58,7 @@ li a:hover {
 }
 
 .tabs {
-    margin-top: 111px;
+    margin-top: 87px;
     width: 100%;
     text-align: center;
 }
@@ -67,5 +67,25 @@ li a:hover {
     height: 100%;
     color: white;
     margin-top: -22px;
-    background-color:  #1e1e1e;
+    background-color: #1e1e1e;
+}
+
+.stocktable {
+    width: 100%;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
 }
