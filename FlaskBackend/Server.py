@@ -58,8 +58,8 @@ def portfolio():
     return render_template('portfolio.html', results=portfolio)
 
 @app.route('/stats')
-def stats():
-    return render_template('stats.html')
+def graphs():
+    return render_template('graphs.html')
 
 if __name__ == "__main__":
     print(username)
