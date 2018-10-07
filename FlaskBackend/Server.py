@@ -11,7 +11,7 @@ my_trader = Robinhood()
 @app.route('/')
 def hello():
     #landing page, redirect to login
-    return redirect(url_for('pick'))
+    return redirect(url_for('login'))
 
 # Route for handling the login page logic
 @app.route('/login', methods=['GET', 'POST'])
@@ -26,16 +26,16 @@ def login(un, pw):
 
 @app.route('/home')
 def home():
-    if request.method == 'POST':
-        nextPage = request.form['nav']
-        if nextPage == 'pick':
-            return redirect(url_for('pick')) #Stock Chooser page
-        if nextPage == 'portfolio':
-            return redirect(url_for('portfolio')) #Portfolio page
-        if nextPage == 'stats':
-            return redirect(url_for('stats')) #Stats page
+    # if request.method == 'POST':
+    #     nextPage = request.form['nav']
+    #     if nextPage == 'pick':
+    #         return redirect(url_for('pick')) #Stock Chooser page
+    #     if nextPage == 'portfolio':
+    #         return redirect(url_for('portfolio')) #Portfolio page
+    #     if nextPage == 'stats':
+    #         return redirect(url_for('stats')) #Stats page
         #Cases for navigating to 3 sub pages
-    return render_template('portfolio.html')
+    return render_template('home.html')
 
 @app.route('/stocks')
 def pick():
