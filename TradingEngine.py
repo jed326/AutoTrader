@@ -6,5 +6,8 @@ from DataCollection import database
 
     #get all stocks from dataset
     #update all data
+stocks = database.getAllStocks()
+for stock in stocks:
+    print(stock)
 
 #run model based on update dataset
