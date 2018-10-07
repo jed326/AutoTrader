@@ -77,7 +77,7 @@ if __name__ == "__main__":
     stocks = getAllStocks()
     for s in stocks:
         print(s)
-=======
+
 '''
 if __name__ == "__main__":
     #insertCSV("GOOG")
