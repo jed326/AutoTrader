@@ -15,15 +15,9 @@ html, body {
     padding: 0;
 }
 
-a:link { color: white; text-decoration: none}
-a:visited { color: white; text-decoration: none}
-a:hover { color: #3366CC; text-decoration: underline}
-a:active { color: white; text-decoration: none}
 
 .Webpagename {
     color: white;
-    color: white; 
-    text-decoration: none;
     text-align: center;
     font-size: 54px;
     margin-top: 100px;
@@ -58,16 +52,15 @@ li a:hover {
 }
 
 .tabs {
-    margin-top: 87px;
+    margin-top: 111px;
     width: 100%;
     text-align: center;
 }
 
 .bodyofpage {
     height: 100%;
-    color: white;
     margin-top: -22px;
-    background-color: #1e1e1e;
+    background-color: #EEEEEE;
 }
 
 .stocktable {

@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, request
 from Robinhood import Robinhood
-import sys
+import sys, datetime
 sys.path.append("../")
 from DataCollection import database
 
@@ -42,7 +42,12 @@ def home():
 
 @app.route('/stocks')
 def pick():
-    stocks = database.getAllStocks()
+    now = datetime.datetime.now()
+
+    date = str(now.year) + '-' + str(now.month) + '-'  + str(now.day)
+    date = '2018-10-05'
+    print(date)
+    stocks = database.getPrices(date)
     print(stocks)
     return render_template('stockchooser.html', stocks = stocks)
 
