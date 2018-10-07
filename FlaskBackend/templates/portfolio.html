@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title>AutoTrader - Portfolio</title>
+        <link rel= "stylesheet" href= "{{ url_for('static', filename='styles/portfolio.css') }}">
+        <link rel= "stylesheet" href= "{{ url_for('static', filename='styles/jeff.css') }}">
+    </head>
+    <body>
+        <div class = 'headerbackground'>
+            <h1 class = "Webpagename"><a class="Webpagename" href="/home">FUNDING SECURED</a></h1>
+            <div class = "tabs">
+            <ul>
+              <li class = "li-1"><a href="/stocks">Pick Your Stocks</a></li>
+              <li class = "li-2"><a href="/portfolio">Your Portfolio</a></li>
+              <li class = "li-2"><a href="/stats">Stats</a></li>
+            </ul>
+        </div>
+        </div>
+        <table align="center">
+            <thead><tr><th class="head">Stock</th><th class="head">Amount</th>
+                <th class="head">Value</th><th class="head">Cash</th></tr></thead>
+            <tbody>
+                {% for result in results %}
+                    <tr>
+                        {% for elem in result %}
+                            <td>{{elem}}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+</html>

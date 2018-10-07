@@ -2,10 +2,54 @@
 from google.cloud import bigquery
 from google.cloud.bigquery import LoadJobConfig
 from google.cloud.bigquery import SchemaField
-import os, csv, requests
+import os, csv, requests, datetime
 
 project_id = 'autotrader-test-1'
 dataset_id = 'PriceData'
+userdata_id = 'UserData'
+userdata_table = 'Data'
+
+def addUserData(data):
+    client = bigquery.Client(project_id)
+    table_id = userdata_table  # replace with your table ID
+    table_ref = client.dataset(userdata_id).table(table_id)
+    table = client.get_table(table_ref)  # API request
+
+    errors = client.insert_rows(table, data)
+
+    assert errors == []
+
+def queryUser(username):
+    client = bigquery.Client(project_id)
+
+    QUERY = ('SELECT * FROM `%s.%s.%s` WHERE Username=\'%s\' LIMIT 1000' % (project_id, userdata_id, userdata_table, username))
+
+    query_job = client.query(QUERY)
+    rows = query_job.result()
+
+    return [[r[1], r[2], r[2], r[3]] for r in rows]
+
+
+def updateQuantity(User, Stock, newQuantity):
+    client = bigquery.Client(project_id)
+
+    QUERY = ('UPDATE `%s.%s.%s` SET Quantity=%s WHERE Username=%s AND Stock=%s' % (project_id, userdata_id, userdata_table, newQuantity, User, Stock))
+
+    query_job = client.query(QUERY)
+    rows = query_job.result()
+
+    print(rows)
+
+
+def updateMoney(User, Stock, newMoney):
+    client = bigquery.Client(project_id)
+
+    QUERY = ('UPDATE `%s.%s.%s` SET Quantity=%s WHERE Username=%s AND Stock=%s' % (project_id, userdata_id, userdata_table, newMoney, User, Stock))
+
+    query_job = client.query(QUERY)
+    rows = query_job.result()
+
+    print(rows)
 
 def query(stock):
     client = bigquery.Client(project_id)
@@ -20,6 +64,21 @@ def query(stock):
         print(row.symbol)
     '''
     return(rows.to_dataframe())
+
+#gets most recent price of all stocks
+def getPrices(DATE):
+    client = bigquery.Client(project_id)
+    # DATE = datetime.date(int(DATE[0:4]), int(DATE[4:6]), int(DATE[6:8]))
+
+    QUERY = ("SELECT * FROM `%s.%s.*` WHERE date=\'%s\'" % (project_id, dataset_id, DATE))
+
+    query_job = client.query(QUERY)
+    rows = query_job.result()
+    out = {}
+    for r in rows:
+        out.update({r[0]:r[2]})
+
+    return out
 
 def insertCSV(stock):
 
@@ -72,14 +131,14 @@ if __name__ == "__main__":
     # rows = query("TWTR")
     # for r in rows:
     #     print(r)
-    insertCSV("AAPL")
+    # insertCSV("NKE")
+    # stocks = getAllStocks()
+    # for s in stocks:
+    #     print(s)
+    # print(getPrices('2018-10-05'))
 
-    stocks = getAllStocks()
-    for s in stocks:
-        print(s)
+    addUserData([(u'jayd0104@gmail.com', u'COF', 16, 12.70)])
 
-'''
-if __name__ == "__main__":
-    #insertCSV("GOOG")
-    query("TWTR")
-'''
+    # updateQuantity("jayd0104@gmail.com", "AAPL", 6)
+
+    # print(queryUser("jayd0104@gmail.com"))

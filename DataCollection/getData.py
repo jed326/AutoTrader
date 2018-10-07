@@ -16,6 +16,7 @@ def lastDay(stock):
     data = res.json()
     dataQ = data['quote']
 
+    #TODO: Date
     newData = [dataQ['symbol'], data['chart'][20]['date'], dataQ['close'], dataQ['high'], dataQ['low'], dataQ['open'], dataQ['latestVolume']]
 
     return newData
@@ -28,4 +29,4 @@ def lastDay(stock):
     # SchemaField('volume', 'INTEGER', mode='required'),
 
 if __name__ == "__main__":
-    print(lastDay("AAPL"))
+    print(getData("NKE"))

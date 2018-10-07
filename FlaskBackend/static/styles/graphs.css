@@ -1,0 +1,31 @@
+body {
+    background-color: #1e1e1e;
+    font-family: Segoe UI,Frutiger,Frutiger Linotype,Dejavu Sans,Helvetica Neue,Arial,sans-serif;
+}
+
+.graphs-flex-main {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+}
+
+.graphs-flex-headers {
+    color: white;
+    flex: 0 1 auto;
+    text-align: center;
+    font-size: 24px;
+}
+
+.graphs-flex-horizontal {
+    flex: 0 1 auto;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+
+.graph {
+    flex: 0 1 auto;
+    width: 500px;
+    height: 320px;
+    padding: 10px;
+}
