@@ -2,7 +2,7 @@
 from google.cloud import bigquery
 from google.cloud.bigquery import LoadJobConfig
 from google.cloud.bigquery import SchemaField
-import os, csv, requests
+import os, csv, requests, datetime
 
 project_id = 'autotrader-test-1'
 dataset_id = 'PriceData'
@@ -20,6 +20,21 @@ def query(stock):
         print(row.symbol)
     '''
     return(rows.to_dataframe())
+
+#gets most recent price of all stocks
+def getPrices(DATE):
+    client = bigquery.Client(project_id)
+    # DATE = datetime.date(int(DATE[0:4]), int(DATE[4:6]), int(DATE[6:8]))
+
+    QUERY = ("SELECT * FROM `%s.%s.*` WHERE date=\'%s\'" % (project_id, dataset_id, DATE))
+
+    query_job = client.query(QUERY)
+    rows = query_job.result()
+    out = {}
+    for r in rows:
+        out.update({r[0]:r[2]})
+
+    return out
 
 def insertCSV(stock):
 
@@ -72,14 +87,8 @@ if __name__ == "__main__":
     # rows = query("TWTR")
     # for r in rows:
     #     print(r)
-    insertCSV("NKE")
-
+    # insertCSV("NKE")
     # stocks = getAllStocks()
     # for s in stocks:
     #     print(s)
-
-'''
-if __name__ == "__main__":
-    #insertCSV("GOOG")
-    query("TWTR")
-'''
+    print(getPrices('2018-10-05'))
