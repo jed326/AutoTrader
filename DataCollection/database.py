@@ -2,15 +2,19 @@
 from google.cloud import bigquery
 from google.cloud.bigquery import LoadJobConfig
 from google.cloud.bigquery import SchemaField
-import os, csv
+import os, csv, requests
+
+project_id = 'autotrader-test-1'
+dataset_id = 'PriceData'
 
 def query(stock):
-    client = bigquery.Client('autotrader-test-1')
+    client = bigquery.Client(project_id)
 
-    QUERY = ('SELECT symbol FROM `autotrader-test-1.HistoricalPrices.%s` LIMIT 1000' % stock)
+    QUERY = ('SELECT * FROM `%s.%s.%s` LIMIT 1000' % (project_id, dataset_id, stock))
 
     query_job = client.query(QUERY)
     rows = query_job.result()
+
     '''
     for row in rows:
         print(row.symbol)
@@ -19,7 +23,7 @@ def query(stock):
 
 def insertCSV(stock):
 
-    client = bigquery.Client('autotrader-test-1')
+    client = bigquery.Client(project_id)
 
     SCHEMA = [
         SchemaField('symbol', 'STRING', mode='required'),
@@ -31,18 +35,49 @@ def insertCSV(stock):
         SchemaField('volume', 'INTEGER', mode='required'),
     ]
 
-    table_ref = client.dataset('HistoricalPrices').table(stock)
+    table_ref = client.dataset(dataset_id).table(stock)
 
     load_config = LoadJobConfig()
     load_config.skip_leading_rows = 1
     load_config.schema = SCHEMA
 
-    with open('%s.csv' % stock, 'rb') as readable:
+    with open('Data/%s.csv' % stock, 'rb') as readable:
         r = csv.reader(readable, delimiter=',')
-        # for row in r:
-        #     print(r)
         client.load_table_from_file(
             readable, table_ref, job_config=load_config)
+
+def insertRow(stock, data):
+    client = bigquery.Client(project_id)
+    table_id = stock  # replace with your table ID
+    table_ref = client.dataset(dataset_id).table(table_id)
+    table = client.get_table(table_ref)  # API request
+
+    errors = client.insert_rows(table, data)
+
+    assert errors == []
+
+
+def getAllStocks():
+    client = bigquery.Client(project_id)
+
+    QUERY = ('SELECT * FROM `%s.__TABLES__`' % (dataset_id))
+
+    query_job = client.query(QUERY)
+    rows = query_job.result()
+
+    return [r['table_id'] for r in rows]
+
+if __name__ == "__main__":
+    #insertCSV("GOOG")
+    # rows = query("TWTR")
+    # for r in rows:
+    #     print(r)
+    insertCSV("AAPL")
+
+    stocks = getAllStocks()
+    for s in stocks:
+        print(s)
+=======
 '''
 if __name__ == "__main__":
     #insertCSV("GOOG")
