@@ -19,11 +19,26 @@ def addUserData(data):
 
     assert errors == []
 
-def updateQuantity(User, Stock):
-    pass
+def updateQuantity(User, Stock, newQuantity):
+    client = bigquery.Client(project_id)
 
-def updateMoney(User, Stock):
-    pass 
+    QUERY = ('UPDATE `%s.%s.%s` SET Quantity=%s WHERE Username=%s AND Stock=%s' % (project_id, userdata_id, userdata_table, newQuantity, User, Stock))
+
+    query_job = client.query(QUERY)
+    rows = query_job.result()
+
+    print(rows)
+
+
+def updateMoney(User, Stock, newMoney):
+    client = bigquery.Client(project_id)
+
+    QUERY = ('UPDATE `%s.%s.%s` SET Quantity=%s WHERE Username=%s AND Stock=%s' % (project_id, userdata_id, userdata_table, newMoney, User, Stock))
+
+    query_job = client.query(QUERY)
+    rows = query_job.result()
+
+    print(rows)
 
 def query(stock):
     client = bigquery.Client(project_id)
@@ -110,4 +125,7 @@ if __name__ == "__main__":
     # for s in stocks:
     #     print(s)
     # print(getPrices('2018-10-05'))
-    addUserData([(u'jayd0104@gmail.com', u'AAPL', 3, 420.69)])
+
+    # addUserData([(u'jayd0104@gmail.com', u'AAPL', 3, 420.69)])
+
+    updateQuantity("jayd0104@gmail.com", "AAPL", 6)
