@@ -1,5 +1,8 @@
 from flask import Flask, render_template, redirect, url_for, request
 from Robinhood import Robinhood
+import sys
+sys.path.append("../")
+from DataCollection import database
 
 #Global Fields
 app = Flask(__name__)
@@ -8,7 +11,7 @@ my_trader = Robinhood()
 @app.route('/')
 def hello():
     #landing page, redirect to login
-    return redirect(url_for('login'))
+    return redirect(url_for('pick'))
 
 # Route for handling the login page logic
 @app.route('/login', methods=['GET', 'POST'])
@@ -32,11 +35,13 @@ def home():
         if nextPage == 'stats':
             return redirect(url_for('stats')) #Stats page
         #Cases for navigating to 3 sub pages
-    return render_template('home.html')
+    return render_template('portfolio.html')
 
-@app.route('/')
+@app.route('/stocks')
 def pick():
-    return render_template('pick.html')
+    stocks = database.getAllStocks()
+    print(stocks)
+    return render_template('stockchooser.html', stocks = stocks)
 
 @app.route('/portfolio')
 def portfolio():
