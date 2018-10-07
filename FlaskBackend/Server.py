@@ -11,7 +11,7 @@ def hello():
     return redirect(url_for('login'))
 
 # Route for handling the login page logic
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         login(request.form['username'], request.form['password'])
