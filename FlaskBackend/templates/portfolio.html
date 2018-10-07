@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title>AutoTrader - Portfolio</title>
+        <link rel= "stylesheet" href= "{{ url_for('static', filename='styles/portfolio.css') }}">
+    </head>
+    <body>
+        <table align="center">
+            <thead><tr><th class="head">Stock</th><th class="head">Amount</th>
+                <th class="head">Value</th><th class="head">Cash</th></tr></thead>
+            <tbody>
+                {% for result in results %}
+                    <tr>
+                        {% for elem in result %}
+                            <td>{{elem}}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+</html>
