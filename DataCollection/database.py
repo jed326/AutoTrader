@@ -19,6 +19,17 @@ def addUserData(data):
 
     assert errors == []
 
+def queryUser(username):
+    client = bigquery.Client(project_id)
+
+    QUERY = ('SELECT * FROM `%s.%s.%s` WHERE Username=\'%s\' LIMIT 1000' % (project_id, userdata_id, userdata_table, username))
+
+    query_job = client.query(QUERY)
+    rows = query_job.result()
+
+    return [[r[1], r[2], r[2], r[3]] for r in rows]
+
+
 def updateQuantity(User, Stock, newQuantity):
     client = bigquery.Client(project_id)
 
@@ -126,6 +137,8 @@ if __name__ == "__main__":
     #     print(s)
     # print(getPrices('2018-10-05'))
 
-    # addUserData([(u'jayd0104@gmail.com', u'AAPL', 3, 420.69)])
+    addUserData([(u'jayd0104@gmail.com', u'COF', 16, 12.70)])
 
-    updateQuantity("jayd0104@gmail.com", "AAPL", 6)
+    # updateQuantity("jayd0104@gmail.com", "AAPL", 6)
+
+    # print(queryUser("jayd0104@gmail.com"))
