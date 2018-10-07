@@ -4,10 +4,10 @@ from google.cloud.bigquery import LoadJobConfig
 from google.cloud.bigquery import SchemaField
 import os, csv
 
-def query():
+def query(stock):
     client = bigquery.Client('autotrader-test-1')
 
-    QUERY = ('SELECT begins_at FROM `autotrader-test-1.HistoricalPrices.F` '
+    QUERY = ('SELECT begins_at FROM `autotrader-test-1.HistoricalPrices.%s` ' % stock
              'LIMIT 1000')
 
     query_job = client.query(QUERY)
@@ -16,9 +16,6 @@ def query():
     for row in rows:
         print(row.begins_at)
 
-"""
-symbol
-"""
 def insertCSV(stock):
 
     client = bigquery.Client('autotrader-test-1')
@@ -48,19 +45,3 @@ def insertCSV(stock):
 
 if __name__ == "__main__":
     insertCSV("GOOG")
-
-# dataset_id = 'autotrader-test-1:HistoricalPrices'  # replace with your dataset ID
-# # For this sample, the table must already exist and have a defined schema
-# table_id = 'autotrader-test-1:HistoricalPrices.F'  # replace with your table ID
-# # IN A LOOP
-# table_ref = client.dataset(dataset_id).table(table_id)
-# table = client.get_table(table_ref)  # API request
-#
-# rows_to_insert = [
-#     (u'Phred Phlyntstone', 32),
-#     (u'Wylma Phlyntstone', 29),
-# ]
-#
-# errors = client.insert_rows(table, rows_to_insert)  # API request
-#
-# assert errors == []
