@@ -2,13 +2,29 @@
   <head>
     <title>Choose Your Stocks</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel= "stylesheet" href= "{{ url_for('static', filename='styles/jeff.css') }}">
   </head>
   <body>
-    <div>
-      <h1>TEST</h1>
-      {% for stocks in stock %}
+    <div class = 'headerbackground'>
+      <h1 class = "Webpagename">FUNDING SECURED</h1>
 
-            {{stocks}}
+      <div class = "tabs">
+      <ul>
+        <li class = "li-1"><a href="/home">Choose Stocks</a></li>
+        <li class = "li-2"><a href="/projects">Stock Changes</a></li>
+        <li class = "li-2"><a href="/people">Stock Changes</a></li>
+      </ul>
+
+    </div>
+    </div>
+
+
+
+    <div class = "bodyofpage">
+      <h1>TEST</h1>
+      {% for stock in stocks %}
+
+            {{stock}}
 
       {% endfor %}
 

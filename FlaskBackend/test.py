@@ -30,4 +30,3 @@ def yeet():
 
 def test1(u, p):
     my_trader.login(username=u, password=p)
-    print(u, p)
