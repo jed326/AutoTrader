@@ -15,7 +15,11 @@ def query(stock):
     query_job = client.query(QUERY)
     rows = query_job.result()
 
-    return rows
+    '''
+    for row in rows:
+        print(row.symbol)
+    '''
+    return(rows.to_dataframe())
 
 def insertCSV(stock):
 
@@ -73,3 +77,9 @@ if __name__ == "__main__":
     stocks = getAllStocks()
     for s in stocks:
         print(s)
+=======
+'''
+if __name__ == "__main__":
+    #insertCSV("GOOG")
+    query("TWTR")
+'''
